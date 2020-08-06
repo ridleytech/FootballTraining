@@ -10,7 +10,7 @@ import Logout from './Logout';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import {connect} from 'react-redux';
 import {authUser} from '../actions';
-import HamburgerImg from '../images/hamburger-menu.png';
+import MenuImg from '../images/menu.png';
 import HeaderBack from '../images/header-back-icon.png';
 import HeaderImg from '../images/header-img.png';
 import Home from './Home';
@@ -24,7 +24,7 @@ const menuBtn = (props) => {
   return (
     <View style={{marginLeft: 20, marginBottom: 0}}>
       <TouchableOpacity onPress={() => props.navigation.toggleDrawer()}>
-        <Image source={HamburgerImg} />
+        <Image source={MenuImg} />
       </TouchableOpacity>
     </View>
   );
