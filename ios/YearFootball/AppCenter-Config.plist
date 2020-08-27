@@ -1,14 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-<!--
-   AppCenter-Config.plist
-   YearFootball
-
-   Created by Randall Ridley on 8/21/20.
-   Copyright (c) 2020 ___ORGANIZATIONNAME___. All rights reserved.
--->
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "https://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
     <dict>
-    
+    <key>AppSecret</key>
+    <string>e49d4a0f-cd64-472c-b5ed-4f7c26696163</string>
     </dict>
 </plist>

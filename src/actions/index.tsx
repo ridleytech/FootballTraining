@@ -5,6 +5,13 @@ export const addCompletedItem = (item: any) => {
   };
 };
 
+export const removeCompletedItem = (item: any) => {
+  return {
+    type: 'REMOVED_ITEM',
+    removedItem: item,
+  };
+};
+
 export const selectPhase = (item: any) => {
   return {
     type: 'PHASE_SELECTED',

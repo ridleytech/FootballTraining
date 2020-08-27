@@ -19,6 +19,7 @@ import Phases from './Phases';
 import Maxes from './Maxes';
 import EditMax from './EditMax';
 import Profile from './Profile';
+import DrawerContent from '../components/Navigation/drawer';
 
 const menuBtn = (props) => {
   return (
@@ -203,16 +204,24 @@ const AuthStackScreen = (props) => {
 
 const AppDrawer = createDrawerNavigator();
 const AppDrawerScreen = () => (
+  // <AppDrawer.Navigator
+  //   drawerPosition="left"
+  //   drawerType="back"
+  //   drawerContentOptions={{
+  //     activeTintColor: '#7DC11E',
+  //     backgroundColor: 'black',
+  //     inactiveTintColor: 'white',
+  //     fontSize: 15,
+  //   }}>
+
   <AppDrawer.Navigator
     drawerPosition="left"
     drawerType="back"
-    drawerContentOptions={{
-      activeTintColor: 'rgb(62,28,74)',
-    }}>
+    drawerContent={(props) => <DrawerContent {...props} />}>
     <AppDrawer.Screen
       name="Tabs"
       component={ViewWeekStackScreen}
-      options={{drawerLabel: 'HOME'}}
+      options={{drawerLabel: 'TRAIN'}}
     />
     <AppDrawer.Screen name="PHASES" component={PhasesStackScreen} />
     <AppDrawer.Screen name="MAXES" component={MaxesStackScreen} />

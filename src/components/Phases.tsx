@@ -32,7 +32,7 @@ class Phases extends Component {
     console.log('endWorkout: ' + JSON.stringify(item));
 
     this.props.completeDay(
-      this.props.phase,
+      this.props.phase.order,
       this.props.week,
       this.props.day,
       this.state.completedExercises,
@@ -46,12 +46,14 @@ class Phases extends Component {
       <ListItem style={styles.listitem2}>
         <Body style={styles.cellInfo}>
           <View>
-            <Text style={styles.exerciseCell1}>{item}</Text>
+            <Text style={styles.exerciseCell1}>{item.name}</Text>
           </View>
           <TouchableOpacity onPress={() => this.selectItem(item)}>
             <Image
               source={
-                item === this.props.phase ? ProgressComplete : ProgressBlank
+                item.order === this.props.phase.order
+                  ? ProgressComplete
+                  : ProgressBlank
               }
               style={styles.progressIcon}
             />

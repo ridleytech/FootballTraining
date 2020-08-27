@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {StyleSheet, View, Text} from 'react-native';
+import {StyleSheet, View, Text, Dimensions} from 'react-native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import {connect} from 'react-redux';
 
@@ -7,6 +7,14 @@ class Home extends Component {
   startWorkout = () => {
     this.props.navigation.navigate('ViewWeek');
   };
+
+  componentDidMount() {
+    //randall to do
+    //check for internet connection with progress query
+    //check async storage for saved lift values
+    //if there, upload
+    //delete saved lift data
+  }
 
   render() {
     return (
@@ -21,17 +29,13 @@ class Home extends Component {
               <View style={styles.listCell}>
                 <Text style={styles.listCellHeader}>Current Phase</Text>
                 <Text style={styles.listCellSub}>
-                  {this.props.phase} - Week {this.props.week}
+                  {this.props.phase.name} - Week {this.props.week}
                 </Text>
               </View>
 
               <View style={styles.listCell}>
-                <Text style={styles.listCellHeader}>
-                  Last Completed Workout
-                </Text>
-                <Text style={styles.listCellSub}>
-                  {this.props.lastCompletedDay}
-                </Text>
+                <Text style={styles.listCellHeader}>Next Workout</Text>
+                <Text style={styles.listCellSub}>{this.props.currentDay}</Text>
               </View>
 
               <View style={styles.listCell}>
@@ -41,15 +45,14 @@ class Home extends Component {
                 </Text>
               </View>
             </View>
-
-            <View style={styles.submitView}>
-              <TouchableOpacity
-                style={styles.submitBtn}
-                onPress={() => this.startWorkout()}>
-                <Text style={styles.submitTxt}>WORKOUT</Text>
-              </TouchableOpacity>
-            </View>
           </View>
+        </View>
+        <View style={styles.submitView}>
+          <TouchableOpacity
+            style={styles.submitBtn}
+            onPress={() => this.startWorkout()}>
+            <Text style={styles.submitTxt}>WORKOUT</Text>
+          </TouchableOpacity>
         </View>
       </>
     );
@@ -62,7 +65,7 @@ const mapStateToProps = (state) => {
     phase: state.phase,
     week: state.week,
     userid: state.userid,
-    lastCompletedDay: state.lastCompletedDay,
+    currentDay: state.currentDay,
     avgWorkoutTime: state.avgWorkoutTime,
   };
 };
@@ -71,11 +74,15 @@ export default connect(mapStateToProps)(Home);
 
 const styles = StyleSheet.create({
   submitView: {
-    bottom: 80,
+    bottom: 20,
     position: 'absolute',
+    alignItems: 'center',
+    //backgroundColor: 'red',
+    width: Dimensions.get('screen').width,
+    display: 'flex',
   },
   submitBtn: {
-    height: 80,
+    height: 70,
     width: 300,
     backgroundColor: '#7FBF30',
     justifyContent: 'center',

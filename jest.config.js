@@ -1,6 +1,6 @@
 module.exports = {
-  // preset: 'react-native',
-  preset: '@testing-library/react-native',
+  preset: 'react-native',
+  //preset: '@testing-library/react-native',
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
   moduleNameMapper: {
     '.+\\.(css|styl|less|sass|scss|png|jpg|ttf|woff|woff2)$':
