@@ -1,7 +1,7 @@
 import {act} from 'react-test-renderer';
 
 var local: Boolean = false;
-var localPath = 'http://localhost:8888/ridtech/52week/dev/';
+var localPath = 'http://localhost:8888/ridleytech/52week/dev/';
 var remotePath = 'http://agiledevelopment.xyz/52week/dev/';
 remotePath = 'http://ridleytechnologies.com/52week/dev/';
 
@@ -13,7 +13,7 @@ if (local) {
   url = remotePath;
 }
 
-console.log('url: ' + url);
+//console.log('url: ' + url);
 
 const checkDone = () => {
   console.log('checkDone');
@@ -51,6 +51,7 @@ const initialState = {
   editedItem: null,
   dataLoaded: false,
   weekError: false,
+  progressData: {},
 };
 
 export default (state = initialState, action) => {
@@ -174,6 +175,24 @@ export default (state = initialState, action) => {
         people: action.payload,
       };
 
+    case 'PROGRESS_DATA':
+      console.log('progress data: ' + JSON.stringify(action.payload));
+
+      let phase = action.payload.data.progressData.phase;
+      let phasename = action.payload.data.progressData.phasename;
+      let week = action.payload.data.progressData.week;
+      let day = action.payload.data.progressData.day;
+      let dayname = action.payload.data.progressData.dayname;
+
+      return {
+        ...state,
+        progressData: action.payload,
+        phase: {name: phasename, order: phase},
+        week: week,
+        day: day,
+        currentDay: dayname,
+      };
+
     case 'CLEAR_FIELD':
       return {
         ...state,
@@ -210,7 +229,10 @@ export default (state = initialState, action) => {
       weekExercises.map((weekOb) => {
         //console.log('weekOb.completed: ' + weekOb.completed);
         completedExercises.map((compOb) => {
-          if (weekOb.exercise === compOb.exercise) {
+          if (
+            weekOb.exercise === compOb.exercise &&
+            weekOb.day === compOb.day
+          ) {
             weekOb.completed = true;
           }
         });

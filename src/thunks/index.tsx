@@ -1,11 +1,34 @@
+export const getTrainingProgress = () => (dispatch, getState) => {
+  let url = getState().url + 'getProgress.php';
+
+  fetch(url, {
+    method: 'POST',
+    body: JSON.stringify({
+      userid: getState().userid,
+    }),
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    },
+  })
+    .then((response) => {
+      return response.json();
+    })
+    .then((data) => dispatch({type: 'PROGRESS_DATA', payload: data}))
+    .catch((error) => {
+      console.log(error);
+    });
+};
+
 export const getWeekExercises = (
   phase: string,
   week: number,
   userid: number,
-  url: string,
-) => {
-  let url1 =
-    url +
+) => (dispatch, getState) => {
+  //let phase = getState().phase.order;
+
+  let url =
+    getState().url +
     'get-week-exercises.php?phase=' +
     phase +
     '&week=' +
@@ -13,19 +36,19 @@ export const getWeekExercises = (
     '&userid=' +
     userid;
 
-  return (dispatch) => {
-    fetch(url1)
-      .then((response) => {
-        return response.json();
-      })
-      .then((data) => {
-        dispatch({type: 'WEEK_FETCH', payload: data});
-      })
-      .catch((error) => {
-        console.log(error);
-        dispatch({type: 'WEEK_FETCH_ERROR', payload: error});
-      });
-  };
+  console.log(url);
+
+  fetch(url)
+    .then((response) => {
+      return response.json();
+    })
+    .then((data) => {
+      dispatch({type: 'WEEK_FETCH', payload: data});
+    })
+    .catch((error) => {
+      console.log(error);
+      dispatch({type: 'WEEK_FETCH_ERROR', payload: error});
+    });
 };
 
 export const getMaxes = (userid: number, url: string) => {

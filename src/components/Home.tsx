@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {StyleSheet, View, Text, Dimensions} from 'react-native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import {connect} from 'react-redux';
+import {getTrainingProgress} from '../thunks/';
 
 class Home extends Component {
   startWorkout = () => {
@@ -14,6 +15,8 @@ class Home extends Component {
     //check async storage for saved lift values
     //if there, upload
     //delete saved lift data
+
+    this.props.getTrainingProgress();
   }
 
   render() {
@@ -70,7 +73,7 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps)(Home);
+export default connect(mapStateToProps, {getTrainingProgress})(Home);
 
 const styles = StyleSheet.create({
   submitView: {
